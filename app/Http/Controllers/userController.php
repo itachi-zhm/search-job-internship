@@ -9,51 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
-    //
-    /*public function createAccount(Request $request)
-{
-    // Validation des données
-    $validatedData = $request->validate([
-        'nom' => ['required', 'string', 'max:50'],
-        'prenom' => ['required', 'string', 'max:50'],
-        'email' => ['required', 'string', 'email', 'max:120', 'unique:users'],
-        'password' => ['required', 'string', 'min:8'],
-        'adresse' => ['required', 'string', 'max:300'],
-        'num_tel' => ['required', 'string', 'max:20'],
-        'image' => ['nullable', 'image', 'mimes:png,jpg,svg'],
-    ]);
-
-    // Téléchargement de l'image de profil
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageFileName = time() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('public/images', $imageFileName);
-    } else {
-        $imageFileName = null;
-    }
-
-    // Création de l'utilisateur
-    $user = new User([
-        'nom' => $validatedData['nom'],
-        'prenom' => $validatedData['prenom'],
-        'email' => $validatedData['email'],
-        'password' => Hash::make($validatedData['password']),
-        'adresse' => $validatedData['adresse'],
-        'num_tel' => $validatedData['num_tel'],
-        'image' => $imageFileName,
-    ]);
-
-    $user->save();
-
-    // Connexion automatique de l'utilisateur
-    //Auth::login($user);
-
-    if( $save ){
-        return redirect()->back()->with('success','You are now registered successfully');
-    }else{
-        return redirect()->back()->with('fail','Something went wrong, failed to register');
-    }
-}*/
+    
 
 public function create(Request $request)
 {

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\entrepriseController;
+use App\Http\Controllers\offreController;
+use App\Http\Controllers\stageController;
+use App\Http\Controllers\emploiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +55,20 @@ Route::prefix('entreprise')->name('entreprise.')->group(function(){
         Route::post('/logout',[entrepriseController::class,'logout'])->name('logout');
     });
 
+});
+
+Route::prefix('offre')->name('offre.')->group(function(){
+    Route::middleware(['auth:entreprise'])->group(function(){
+
+        Route::view('/create','offre_form')->name('create');
+        Route::post('/store',[offreController::class,'store'])->name('store');
+    });
+});
+
+Route::middleware(['auth:entreprise'])->group(function(){
+
+    Route::get('stage/create/{id_offre}',[stageController::class,'create'])->name('stage.create');
+    Route::post('stage/store',[stageController::class,'store'])->name('stage.store');
+    Route::get('emploi/create/{id_offre}',[emploiController::class,'create'])->name('emploi.create');
+    Route::post('emploi/store',[emploiController::class,'store'])->name('emploi.store');
 });
