@@ -75,6 +75,24 @@
         </div>
     </div>
 
+    <!--<div>
+        <label for="ville">{{ __('Ville') }}</label>
+
+        <div>
+            <input id="ville" type="text" class="@error('ville') is-invalid @enderror" name="ville" value="{{ old('ville') }}" required autocomplete="ville">
+
+            @error('ville')
+                <span role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>-->
+    <div>
+        <label for="ville">Ville</label><br>
+        <input type="text" name="ville">
+    </div>
+
     <div>
         <label for="adresse">{{ __('Adresse') }}</label>
 
@@ -102,8 +120,24 @@
             @enderror
         </div>
     </div>
-
     <div>
+        <label for="niveau_scolaire">Niveau scolaire</label><br>
+        <select name="niveau_scolaire">
+            <option value="bac">Bac</option>
+            <option value="bac+1">Bac+1</option>
+            <option value="bac+2">Bac+2</option>
+            <option value="bac+3">Bac+3</option>
+            <option value="bac+4">Bac+4</option>
+            <option value="bac+5">Bac+5</option>
+            <option value="doctorant">Doctorant</option>
+        </select>
+    </div>
+        <div class="form-group">
+            <label for="cv">Fichier CV (PDF)</label>
+            <input type="file" id="cv" name="cv" accept=".pdf">
+        </div>    
+    <div>
+        
         <label for="image">{{ __('Photo de profil') }}</label>
 
         <div>
@@ -122,4 +156,5 @@
         {{ __('S\'inscrire') }}
     </button>
 </div>
+</form>
 

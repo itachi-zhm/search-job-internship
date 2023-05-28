@@ -22,9 +22,12 @@ class User extends Authenticatable
         'prenom',
         'email',
         'password',
+        'ville',
         'adresse',
         'num_tel',
+        'niveau_scolaire',
         'image',
+        'cv',
     ];
 
     /**

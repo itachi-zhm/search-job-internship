@@ -17,17 +17,22 @@ class entrepriseController extends Controller
         'nom' => ['required', 'string', 'max:200'],
         'email' => ['required', 'string', 'email', 'max:100', 'unique:entreprises'],
         'description' => ['nullable', 'string', 'max:1000'],
+        'ville' => ['required','string','max:100'],
         'adresse' => ['nullable', 'string', 'max:300'],
+        'domaine' => ['required', 'string', 'in:technologie,santé,industrie,agriculture,restauration'],
         'password' => ['required', 'string', 'min:8'],
         'num_tel' => ['required', 'string', 'max:20'],
         'image' => ['nullable', 'image', 'mimes:png,jpg,svg'],
     ]);
 
     // Téléchargement de l'image de profil
-    $imageData = null;
+    $imagePath = null;
     if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageData = file_get_contents($image);
+        $imageFile = $request->file('image');
+        if ($imageFile->isValid()) {
+            $fileName = 'image_' . uniqid() . '.' . $imageFile->getClientOriginalExtension();
+            $imagePath = $imageFile->storeAs('entreprise/images', $fileName, 'public');
+        }
     }
 
     // Création de l'entreprise
@@ -35,10 +40,12 @@ class entrepriseController extends Controller
         'nom' => $validatedData['nom'],
         'email' => $validatedData['email'],
         'description' => $validatedData['description'],
+        'ville' => $validatedData['ville'],
         'adresse' => $validatedData['adresse'],
+        'domaine' => $validatedData['domaine'],
         'password' => Hash::make($validatedData['password']),
         'num_tel' => $validatedData['num_tel'],
-        'image' => $imageData,
+        'image' => $imagePath,
     ]);
 
     $save=$entreprise->save();

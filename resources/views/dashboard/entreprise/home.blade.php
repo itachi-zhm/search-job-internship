@@ -27,7 +27,7 @@
                              <tr>
                                  <td>{{ Auth::guard('entreprise')->user()->nom }}</td>
                                  <td>{{ Auth::guard('entreprise')->user()->email }}</td>
-                                 <td><img src="data:image/jpg;base64,{{ base64_encode(Auth::guard('entreprise')->user()->image) }}" alt="Photo de profil" width="100" height="100">
+                                 <td><img src="{{ asset('storage/'.Auth::guard('entreprise')->user()->image) }}" alt="Photo de profil" width="100" height="100">
 
                                  </td>
                                  <td>

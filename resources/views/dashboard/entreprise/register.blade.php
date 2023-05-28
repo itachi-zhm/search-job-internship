@@ -36,6 +36,10 @@
             <textarea id="description" name="description" rows="5">{{ old('description') }}</textarea>
         </div>
     </div>
+    <div>
+        <label for="ville">Ville</label><br>
+        <input type="text" name="ville">
+    </div>
 
     <div>
         <label for="adresse">{{ __('Adresse') }}</label>
@@ -44,6 +48,17 @@
             <input id="adresse" type="text" name="adresse" value="{{ old('adresse') }}" />
         </div>
     </div>
+    <div class="form-group">
+        <label for="domaine">Domaine</label>
+        <select name="domaine" id="domaine" class="form-control">
+            <option value="technologie">Technologie</option>
+            <option value="santé">Santé</option>
+            <option value="industrie">Industrie</option>
+            <option value="agriculture">Agriculture</option>
+            <option value="restauration">Restauration</option>
+        </select>
+    </div>
+    
 
     <div>
         <label for="password">{{ __('Password') }}</label>

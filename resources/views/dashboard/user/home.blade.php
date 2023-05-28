@@ -27,8 +27,11 @@
                              <tr>
                                  <td>{{ Auth::guard('web')->user()->nom }}</td>
                                  <td>{{ Auth::guard('web')->user()->email }}</td>
-                                 <td><img src="data:image/jpg;base64,{{ base64_encode(Auth::guard('web')->user()->image) }}" alt="Photo de profil" width="100" height="100">
-
+                                 <td>
+                                    <img src="{{asset('storage/'.Auth::guard('web')->user()->image)}}" alt="Photo de profil" width="100" height="100">
+                                 </td>
+                                 <td>
+                                    <a href="{{ asset('storage/' . Auth::guard('web')->user()->cv) }}" target="_blank">Télécharger CV</a>
                                  </td>
                                  <td>
                                      <a href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
