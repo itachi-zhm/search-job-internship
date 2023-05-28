@@ -18,7 +18,6 @@ class emploiController extends Controller
         //validation des données
         $validatedData=$request->validate([
             'salaire' => 'required|numeric',
-            'lieu_emploi' => 'required|max:50',
             'type_contrat' => 'required|max:200',
             'id_offre' => 'required|exists:offres,id_offre'
         ]);
@@ -26,10 +25,17 @@ class emploiController extends Controller
         // Création d'emploi
         $emploi = new Emploi;
         $emploi->salaire = $validatedData['salaire'];
-        $emploi->lieu_emploi = $validatedData['lieu_emploi'];
         $emploi->type_contrat = $validatedData['type_contrat'];
         $emploi->id_offre = $validatedData['id_offre'];
         $emploi->save();
+    }
+
+
+    public function index()
+    {
+        $emplois = Emploi::with('offre', 'offre.entreprise')->get();
+
+        return view('emploi_index', compact('emplois'));
     }
 
 }

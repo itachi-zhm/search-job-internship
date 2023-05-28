@@ -10,4 +10,9 @@ class Offre extends Model
     use HasFactory;
     protected $table ='offres';
     protected $primaryKey = 'id_offre';
+
+    public function entreprise()
+{
+    return $this->belongsTo(Entreprise::class, 'id_entreprise');
+}
 }

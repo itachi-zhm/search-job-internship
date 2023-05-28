@@ -5,7 +5,8 @@
 
     <label for="description_offre">Description de l'offre</label>
     <textarea id="description_offre" name="description_offre" required></textarea><br>
-
+    <label for="ville">Ville</label>
+    <input type="text" name="ville" required><br>
     <!--<label for="date_publication">Date de publication</label>
     <input id="date_publication" type="date" name="date_publication" required><br>-->
 

@@ -5,8 +5,7 @@
     <label for="salaire">Salaire:</label>
     <input type="number" name="salaire" required>
 
-    <label for="lieu_stage">Lieu de travail:</label>
-    <input type="text" name="lieu_emploi" required>
+    
 
     <label for="type_contrat">Type de contrat:</label>
     <input type="text" name="type_contrat" required>
