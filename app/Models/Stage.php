@@ -9,6 +9,8 @@ class Stage extends Model
 {
     use HasFactory;
     protected $table='stages'; 
+    protected $primaryKey = 'id_stage';
+    protected $fillable = ['remuneration_stage', 'duree_stage'];
 
     //--------récupération des données d'offre associées à ce stage 
     public function offre()

@@ -85,9 +85,65 @@ function check(Request $request){
     }
 }
 
-function logout(){
-    Auth::guard('web')->logout();
-    return redirect('/');
-}
+    function logout(){
+        Auth::guard('web')->logout();
+        return redirect()->route('user.home');
+    }
+
+    public function afficherCandidaturesUser($id_user)
+    {
+        $user = User::findOrFail($id_user);
+        $candidatures = $user->candidatures;
+
+        return view('candidatures_index', ['candidatures' => $candidatures]);
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('dashboard.user.edit', compact('user'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        // ...
+        $validatedData = $request->validate([
+            'nom' => ['required', 'string', 'max:50'],
+            'prenom' => ['required', 'string', 'max:50'],
+            'ville' => ['required','string','max:100'],
+            'adresse' => ['required', 'string', 'max:300'],
+            'num_tel' => ['required', 'string', 'max:20'],
+            'niveau_scolaire' => 'required|in:bac,bac+2,bac+3,bac+4,bac+5,doctorant',
+            'cv' => 'mimes:pdf|max:2048',
+            'image' => ['nullable', 'image', 'mimes:png,jpg,svg','max:2048'],
+        ]);
+
+        $user->update($validatedData);
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            if ($imageFile->isValid()) {
+                $fileName = 'image_' . uniqid() . '.' . $imageFile->getClientOriginalExtension();
+                $imagePath = $imageFile->storeAs('user/images', $fileName, 'public');
+            }
+            // Mettre à jour le chemin de l'image dans la base de données
+            $user->image = $imagePath;
+            $user->save();
+        }
+
+        // Téléchargement du CV
+        $cvPath = null;
+        if ($request->hasFile('cv')) {
+            $cvFile = $request->file('cv');
+            $fileName = 'cv_' . uniqid() . '.' . $cvFile->getClientOriginalExtension();
+            $cvPath = $cvFile->storeAs('user/cv', $fileName, 'public');
+            $user->cv = $cvPath;
+            $user->save();
+        }
+
+        return redirect()->route('user.home');
+    }
 
 }

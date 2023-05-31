@@ -28,6 +28,7 @@ class emploiController extends Controller
         $emploi->type_contrat = $validatedData['type_contrat'];
         $emploi->id_offre = $validatedData['id_offre'];
         $emploi->save();
+        return redirect()->route('entreprise.home');
     }
 
 

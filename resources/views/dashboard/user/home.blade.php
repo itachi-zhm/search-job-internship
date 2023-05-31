@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
-    
+    <a href="{{route('user.candidatures',['id_user'=>Auth::guard('web')->user()->id])}}">voir candidature</a><br>
+    <a href="{{route('user.editer',['id_user' => Auth::guard('web')->user()->id])}}">modifier les information personnel</a>
 </body>
 </html>
