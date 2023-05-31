@@ -47,4 +47,9 @@ class Entreprise extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function offres()
+    {
+        return $this->hasMany(Offre::class, 'id_entreprise');
+    }
 }

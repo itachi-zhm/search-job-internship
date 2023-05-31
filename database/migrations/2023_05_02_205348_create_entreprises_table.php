@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('description', 1000)->nullable();
             $table->string('adresse', 300)->nullable();
+            $table->enum('domaine', ['technologie', 'santé', 'agriculture', 'restauration']);
             $table->string('password', 255);
             $table->string('num_tel', 20);
             $table->binary('image')->nullable();

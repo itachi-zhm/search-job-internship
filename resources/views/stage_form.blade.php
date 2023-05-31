@@ -8,7 +8,11 @@
         <input type="number" name="remuneration_stage" id="remuneration_stage" required>
     </div>
 
-    
+    <div>
+        <label for="lieu_stage">Lieu</label>
+        <input type="text" name="lieu_stage" id="lieu_stage" required>
+    </div>
+
 
     <div>
         <label for="duree_stage">Durée</label>

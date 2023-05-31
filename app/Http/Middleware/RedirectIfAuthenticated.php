@@ -25,11 +25,11 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 //return redirect(RouteServiceProvider::HOME);
 
-                if($guard === 'entreprise'){
-                    return redirect()->route('entreprise.home');
+                if ($guard === 'entreprise') {
+                    return redirect()->route('entreprise.espace');
                 }
 
-                return redirect()->route('user.home');
+                return redirect()->route('user.espace');
             }
         }
 
