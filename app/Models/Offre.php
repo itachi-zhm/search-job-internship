@@ -10,12 +10,23 @@ class Offre extends Model
     use HasFactory;
     protected $table = 'offres';
     protected $primaryKey = 'id_offre';
+    protected $fillable = ['titre_offre', 'description_offre', 'ville','date_publication','date_limite', 'id_entreprise'];
 
     public function entreprise()
     {
         return $this->belongsTo(Entreprise::class, 'id_entreprise');
     }
 
+<<<<<<< HEAD
+=======
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class,'id_offre');
+    }
+
+    
+
+>>>>>>> 8e02f4232295ccca015242cb5beb6664f931c232
     public function emploi()
     {
         return $this->hasOne(Emploi::class, 'id_offre');
@@ -26,6 +37,7 @@ class Offre extends Model
         return $this->hasOne(Stage::class, 'id_offre');
     }
 
+<<<<<<< HEAD
     public function afficherOffres()
     {
         // Récupérer toutes les offres d'emploi et de stage
@@ -52,4 +64,6 @@ class Offre extends Model
             echo "<br>";
         }
     }
+=======
+>>>>>>> 8e02f4232295ccca015242cb5beb6664f931c232
 }

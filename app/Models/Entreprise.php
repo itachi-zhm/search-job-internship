@@ -52,4 +52,8 @@ class Entreprise extends Authenticatable
     {
         return $this->hasMany(Offre::class, 'id_entreprise');
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e02f4232295ccca015242cb5beb6664f931c232
 }
